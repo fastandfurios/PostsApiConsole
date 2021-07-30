@@ -25,12 +25,10 @@ namespace PostsApiConsole
 
             var tasks = new List<Task<Response>>();
             var listResponses = new List<Response>();
-            var ids = Enumerable.Range(4, 10);
 
-            foreach (var id in ids)
-            {
-                tasks.Add(Task.Run( () => client.GetPosts(id)));
-            }
+            var ids =Enumerable.Range(4, 10);
+
+            ids.AsQueryable().ToList().ForEach(id => { tasks.Add(Task.Run(() => client.GetPosts(id))); });
 
             listResponses.AddRange(await Task.WhenAll(tasks));
 
