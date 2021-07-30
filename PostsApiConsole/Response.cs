@@ -12,5 +12,8 @@ namespace PostsApiConsole
         public int Id { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+
+        public override string ToString()
+            => $"{UserId}\n{Id}\n{Title}\n{Body.Replace("\n", " ")}\n";
     }
 }
